@@ -34,12 +34,27 @@ module biriscv_decode
 
   input wire core_flush,
 
+  input wire [1:0] stall_de,
 
 
 );
 
+  
+
+  assign ia_buf_vld_din[0] = inst_de0_vld_q[0] | inst_vld_f2[0];
+
+  always_ff @(posedge clk or negedge reset_n) begin 
+    if (~reset_n)
+      ia_buf_vld_q[0] <= 1'b0;
+    else if (inst_de0_vld_en) 
+      ia_buf_vld_q[0] <= ia_buf_vld_din[0];
+  end 
 
 
+
+  assign ia_consume_cnt = // ??
+
+  
     reg [100:0] fetch_buffer_q;
 
     always @ (posedge clk_i or posedge rst_i)
