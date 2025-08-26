@@ -27,10 +27,14 @@ module biriscv_decode
 (
     // Inputs
   input wire [1:0] inst_vld_f2,
+  output wire [1:0] inst_rdy_f2,
   input wire [31:0] inst_data_f2[1:0],
-  input wire [`USC_RV_FETCH_INFO_W-1:0] inst_info_f2,
+  input wire [`USC_RV_FETCH_INFO_W-1:0] inst_info_f2, // 1. 2 bits pred info 1 bit fault 1 bit page fault
   input wire [31:0] inst_pc_f2, 
-  
+
+  input wire core_flush,
+
+
 
 );
 
